@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="c1" class="tn.enig.model.Client" scope="prototype">
+		<constructor-arg value="1"/>
+		<constructor-arg value="ali"/>
+	</bean>
+	
+	<bean id="c2" class="tn.enig.model.Client">
+		<constructor-arg value="2"/>
+		<constructor-arg value="hamza"/>
+	</bean>
+	
+	<bean id="c3" class="tn.enig.model.Client">
+		<constructor-arg value="3" />
+		<constructor-arg value="aya" />
+	</bean>
+	
+	<bean id="op1" class="tn.enig.model.Operation">
+		<constructor-arg value="1"/>
+		<constructor-arg value="200"/>
+	</bean>
+	
+	<bean id="op2" class="tn.enig.model.Operation">
+		<constructor-arg value="2"/>
+		<constructor-arg value="-300"/>
+	</bean>
+	
+	<bean id="cp1" class="tn.enig.model.Compte">
+		<property name="num" value="1"/>
+		<property name="clt" ref="c1"/>
+		<property name="solde" value="100"/>
+		<property name="operations">
+			<list>
+				<ref bean="op1"/>
+				<ref bean="op2"/>
+			</list>
+		</property> 
+	</bean>
+	
+	
+<bean id="gest1" class="tn.enig.dao.GestionImp">
+	<property name="listeClients">
+		<list>
+			<ref bean="c1" />
+			<ref bean="c2" />
+			<ref bean="c3" />
+		</list>
+	</property>
+	<property name="listeComptes">
+		<list>
+			<ref bean="cp1" />
+		</list>
+	</property>
+</bean>
+	
+</beans>
+
